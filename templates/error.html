@@ -1,0 +1,18 @@
+<!-- HTML page that renders 'Page not found' error-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% extends 'template.html' %}
+    {% block head %}
+    {{ super() }}
+    {% endblock %}
+  </head>
+  <body>
+    {% block content %}
+    <section class="error-404">
+      <h4>Page did not load with the following error:</h4>
+      <p>{{ error }}</p>
+    </section>
+    {% endblock %}
+  </body>
+</html>

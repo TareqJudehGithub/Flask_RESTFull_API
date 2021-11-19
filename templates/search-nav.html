@@ -1,0 +1,31 @@
+<!--search-nav.html renders data requested using navar Search form-->
+<!doctype html>
+<html lang="en">
+  <head>
+    {% extends 'template.html' %}
+    {% block head %}
+    {{ super() }}
+    {% endblock %}
+  </head>
+  <body>
+    {% block content %}
+    {% for movie in movies.Search %}
+    <div class="col-sm movies">
+      <div class="card" style="width: 19rem;">
+        <a href="{{ url_for('movie_info', title_ID=movie.Title) }}">
+          <img src="{{ movie.Poster | safe }}" class="card-img-top img-fluid" alt="movie poster" style="height: 350px">
+          <div class="card-body">
+            <h5 class="card-title">
+              {{ movie.Title | title | safe }}
+            </h5>
+        </a>
+      </div>
+    </div>
+
+    </div>
+    {% endfor %}
+    {% endblock %}
+
+
+  </body>
+</html>

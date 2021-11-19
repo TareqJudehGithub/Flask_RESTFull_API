@@ -1,0 +1,39 @@
+<!--movie-info.html renders -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% extends "template.html" %}
+    {% block head %}
+    {{ super() }}
+    {% endblock %}
+  </head>
+  <body>
+    {% block content %}
+    <div class="row" style="width: 800px;margin: 0 auto;">
+      <!-- movie poster-->
+      <div class="col-sm-4">
+        <img class="img-fluid rounded" src="{{ movie.Poster | safe }}" alt="movie poster" style="height: 100%">
+      </div>
+
+      <!-- movie details-->
+      <div class="col-sm-8">
+        <div class="card-body movie-info">
+          <h5 class="card-title">{{ movie.Title | title | safe }}</h5>
+          <p class="card-text"><strong>{{ movie.Year | safe}} {{ movie.Rated | safe}}</strong></p>
+          {% if movie.Genre %}
+          {% for item in movie.Genre.split(",") %}
+          <p class="card-text btn btn-dark disabled genre-button">
+            {{ item | title| safe }}</p>
+          {% endfor %}
+          {% endif %}
+
+          <p>{{ movie.Plot }}</p>
+          <p class="card-text"><strong>Director</strong> {{ movie.Director }}</p>
+          <p class="card-text"><strong>Stars</strong> {{ movie.Actors }}</p>
+          <p class="card-text"><strong>IMDB</strong> {{ movie.imdbRating }}/10</p>
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+  </body>
+</html>

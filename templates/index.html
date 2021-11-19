@@ -1,0 +1,40 @@
+<!--index.html renders the web app homepage-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% extends 'template.html' %}
+    {% block head %}
+    {{ super() }}
+    {% endblock %}
+  </head>
+
+  <body>
+    {% block content %}
+
+    {% for movie in movies.Search %}
+    {% if movie.Title %}
+
+    <div class="col-sm movies">
+      <div class="card" style="width: 19rem;">
+        <a href="{{ url_for('movie_info', title_ID=movie.Title) }}">
+          <img src="{{ movie.Poster | safe }}" class="card-img-top img-fluid" alt="movie poster" style="height: 350px">
+          <div class="card-body card-homepage">
+            <h5 class="card-title">
+              {{ movie.Title | title | safe }}
+            </h5>
+          </div>
+        </a>
+      </div>
+
+    </div>
+    {% else %}
+    <p>requested data not found</p>
+    {% endif %}
+
+    {% endfor %}
+
+    {% endblock %}
+
+
+  </body>
+</html>

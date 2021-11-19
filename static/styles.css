@@ -111,18 +111,28 @@ main {
 	margin-bottom: 500px;
 }
 /* Footer */
+footer {
+	position: relative;
+	border-top: 1px solid #dbd8d8;
+	height: 40px;
+}
 .footer-nav {
+	align-items: center;
 	text-align: center;
 	color: #4f4f4f;
-	border-top: 1px solid #dbd8d8;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 .footer-link {
 	margin: 0 auto;
 	font-size: 14px;
-	padding: 15px;
+	padding-top: 10px;
 }
-.name-link {
-	cursor: none;
+.name-footer {
+	margin: 0 auto;
+	font-size: 14px;
 }
 .social-media {
 	margin-left: 10px;

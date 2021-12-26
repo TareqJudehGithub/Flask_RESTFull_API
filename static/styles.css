@@ -28,7 +28,7 @@ body {
 /* Cell - card */
 .card {
 	text-align: center;
-	margin: 10px auto;
+	margin: 0 auto;
 	height: 425px;
 }
 .card:hover {
@@ -94,6 +94,9 @@ a:hover {
 .genre-button {
 	border-radius: 50px;
 	background-color: black;
+}
+.movies {
+	height: 100%;
 }
 .flashes {
 	margin-top: 50px;

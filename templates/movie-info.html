@@ -12,7 +12,10 @@
     <div class="row" style="width: 800px;margin: 0 auto;">
       <!-- movie poster-->
       <div class="col-sm-4">
-        <img class="img-fluid rounded" src="{{ movie.Poster | safe }}" alt="movie poster" style="height: 100%">
+        <img class="img-fluid" src="{{ movie.Poster | safe }}" alt="movie poster" style="height: 100%">
+        <a class="btn btn-secondary" href="{{ url_for('add_title', title=movie.Title )}}" style="width: 100%;">
+          Add to Favorites
+        </a>
       </div>
 
       <!-- movie details-->

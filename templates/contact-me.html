@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% extends "template.html" %}
+    {% block head %}
+    {{ super() }}
+    {% endblock %}
+  </head>
+  <body>
+    {% block content %}
+    <h1>Let's get in touch!</h1>
+    <form action="{{ url_for('contact_me') }}" method="POST" class="contact-me shadow-lg">
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="name" placeholder="Name" name="name" required autofocus>
+        <label for="name" class="form-label">Name</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email"
+          required>
+        <label for="floatingInput">Email address</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="subject" placeholder="subject" name="subject" required>
+        <label for="subject" class="form-label">subject</label>
+      </div>
+      <div class="form-floating mb-3">
+        <textarea class="form-control" name="message" placeholder="Your message.." id="message" rows="5" required
+          style="height:100%"></textarea>
+        <label for="message" class="form-label">Send me a message here..</label>
+      </div>
+      <button type="submit" class="btn btn-outline-secondary contact-btn">Submit</button>
+    </form>
+    {% endblock %}
+  </body>
+</html>

@@ -8,21 +8,24 @@
   </head>
   <body>
     {% block content %}
-
     {% for row in favorites_list %}
+    <div class="col-sm movies">
+      <div class="card " style="width: 19rem;height:470px;">
+        <a href="{{ url_for('movie_info', title_ID=row.title) }}">
 
-    <div class="col-sm">
-      <div class="card movies" style="width: 19rem;">
-        <a href="{{ url_for('fav_movies') }}">
-          <img src="{{ row.poster | safe }}" class="card-img-top img-fluid" alt="movie poster" style="height: 350px">
+          <img src="{{ row.poster | safe }}" class="card-img-top img-fluid" alt="movie poster"
+            style="height: 350px;padding-top:40px;">
           <div class="card-body card-homepage">
             <h5 class="card-title">
               {{ row.title | title | safe }}
             </h5>
-          </div>
+            <div>
         </a>
-        <a class="btn btn-secondary" href="{{ url_for('remove_title', title_id=row.id) }}">Remove</a>
       </div>
+    </div>
+    <a class="btn btn-outline-danger" href="{{ url_for('remove_title', title_id=row.id) }}"
+      style="margin-bottom: 0;padding: 5px;font-size: 14px;">Remove</a>
+    </div>
     </div>
     {% endfor %}
     {% endblock %}

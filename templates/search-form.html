@@ -9,68 +9,56 @@
   </head>
   <body>
     {% block content %}
-    <div class="col-lg-4 col-md-12 col-sm-12 shadow-sm adv-col-1">
-      <form action="{{ url_for('search_movies') }}" method="POST" class="row g-3 adv-search-form">
-        <h4>Looking for a certain title?</h4>
-        <div class="col-sm-12">
-          <div class="form-floating">
-            <input type="text" class="form-control" id="floatingTitle" name="title" placeholder="Movie title" required>
-            <label for="floatingTitle">Title</label>
-          </div>
-        </div>
-
-        <div class="col-sm-12">
-          <div class="form-floating">
-            <input type="number" class="form-control" id="floatingYear" name="year" placeholder="Year">
-            <label for="floatingYear">Year</label>
-          </div>
-        </div>
-
-        <div class="col-sm-12">
-          <select class="form-select select-type" name="type" aria-label="Default select example">
-            <option value="movie" selected>Type</option>
-            <option value="movie">Movie</option>
-            <option value="series">Series</option>
-          </select>
-        </div>
-
-        <button class="btn btn-outline-dark mt-4 mb-3" type="submit">Search</button>
-
-      </form>
-    </div>
-
     {% endblock %}
 
-    {% block form %}
 
+    {% block form %}
     {% if movie %}
 
     <!--Check if title has an image/poster -->
     {% if movie.Poster %}
+    <div class="row search-result">
+      <div class="col-sm-6 col-xs-12 adv-col-2" style="width: 19rem;height:460px;">
+        <img src="{{ movie.Poster | safe }}" class="img-fluid rounded search-form-img" alt="movie poster">
+      </div>
+      {% endif %}
 
-    <div class="col-lg-4 col-md-6 col-sm-12 adv-col-2">
-      <img src="{{ movie.Poster | safe }}" class="img-fluid rounded adv-img" alt="movie poster">
-    </div>
-    {% endif %}
+      <!-- title details-->
+      <div class="col-sm-6 col-xs-12 adv-col-3">
+        <div class="adv-title-info">
+          <div class="card-body" style="text-align:left;">
+            <h3 class="card-title">{{ movie.Title | title | safe }}</h3>
+            <p class="card-text">
+              <strong>{{ movie.Year | safe }} | {{ movie.Rated | safe }} | IMDB {{ movie.imdbRating }}/10</strong>
+            </p>
 
-    <!-- title details-->
-    <div class="col-lg-4 col-md-6 col-sm-12 adv-col-3">
-      <div class="adv-title-info">
-        <div class="card-body" style="text-align:left;">
-          <h3 class="card-title">{{ movie.Title | title | safe }}</h3>
-          <p class="card-text"><strong>{{ movie.Year | safe }} | {{ movie.Rated | safe }}</strong></p>
+            <!--Check if title has a Genre data -->
+            {% if movie.Genre %}
+            <!--Iterate over each Genre item and render it as a button -->
+            {% for item in movie.Genre.split(",") %}
+            <button class="btn btn-dark disabled mb-3 genre-button" style="border-color: orangered;">{{ item | safe
+              }}</button>
+            {% endfor %}
+            {% endif %}
+            <p>{{ movie.Plot }}</p>
+            <p class="card-text"><strong>Director</strong> {{ movie.Director }}</p>
+            <p class="card-text"><strong>Stars</strong> {{ movie.Actors }}</p>
 
-          <!--Check if title has a Genre data -->
-          {% if movie.Genre %}
-          <!--Iterate over each Genre item and render it as a button -->
-          {% for item in movie.Genre.split(",") %}
-          <button class="btn btn-dark disabled mb-3 genre-button">{{ item | safe }}</button>
-          {% endfor %}
-          {% endif %}
-          <p>{{ movie.Plot }}</p>
-          <p class="card-text"><strong>Director</strong> {{ movie.Director }}</p>
-          <p class="card-text"><strong>Stars</strong> {{ movie.Actors }}</p>
-          <p class="card-text"><strong>IMDB</strong> {{ movie.imdbRating }}/10</p>
+
+            <form action="https://www.youtube.com/results" target="_blank" style="background: none;">
+              <input class="trailer-input" value="{{ movie.Title }} {{ movie.Year }} trailer" type="search"
+                name="search_query">
+              <br>
+              <button class="btn btn-danger mb-5" type="submit">
+                Trailer
+                <i class="fab fa-lg fa-youtube"></i>
+              </button>
+            </form>
+            <a class="btn btn-outline-secondary" href="{{ url_for('add_title_search', title=movie.Title )}}"
+              style="width: 100%;">
+              Add to Favorites
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -78,7 +66,43 @@
     {% else %}
     <div></div>
     {% endif %}
+
+    <div class="row">
+      <div class="col-12  adv-col-1">
+        <form action="{{ url_for('search_movies') }}" method="POST" class="row g-3 adv-search-form shadow-lg">
+          <h4>Looking for a certain title?</h4>
+          <div class="">
+            <div class="form-floating">
+              <input type="text" class="form-control form-search" id="floatingTitle" name="title"
+                placeholder="Movie title" required>
+              <label for="floatingTitle">Title</label>
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="form-floating">
+              <input type="number" class="form-control form-search" id="floatingYear" name="year" placeholder="Year">
+              <label for="floatingYear">Year</label>
+            </div>
+          </div>
+
+          <div class="col-6">
+            <select class="form-select select-type" style="padding: 15px;margin-top:1px;" name="type"
+              aria-label="Default select example">
+              <option value="movie" selected>Type</option>
+              <option value="movie">Movie</option>
+              <option value="series">Series</option>
+            </select>
+          </div>
+
+          <button class="btn btn-outline-dark  mt-4 mb-3 form-search" type="submit">Search</button>
+
+        </form>
+      </div>
+    </div>
     {% endblock %}
+
+
 
   </body>
 </html>

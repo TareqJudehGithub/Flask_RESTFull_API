@@ -1,4 +1,3 @@
-<!--index.html renders the web app homepage-->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,19 +6,16 @@
     {{ super() }}
     {% endblock %}
   </head>
-
   <body>
     {% block content %}
-
     {% for movie in movies.Search %}
     {% if movie.Title %}
-
     <div class="col-sm movies">
-      <div class="card" style="width: 19rem;">
+      <div class="card" style="width: 19rem;height:460px;">
         <a href="{{ url_for('movie_info', title_ID=movie.Title) }}">
-          <img src="{{ movie.Poster | safe }}" class="card-img-top img-fluid" alt="movie poster" style="height: 350px"
-            name="image">
-          <div class="card-body card-homepage">
+          <img src="{{ movie.Poster | safe }}" class="card-img-top title-img img-fluid" alt="movie poster" name="image"
+            style="height: 370px">
+          <div class="card-body">
             <h5 class="card-title" name="name">
               {{ movie.Title | title | safe }}
             </h5>
@@ -27,6 +23,7 @@
         </a>
       </div>
     </div>
+
 
     {% else %}
     <p>requested data not found</p>

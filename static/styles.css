@@ -8,10 +8,12 @@ body {
 	margin: 10px auto;
 	font-family: "Roboto", sans-serif;
 }
+
 /* Navbar */
 .nav-font:hover,
 .nav-font:active {
 	font-weight: bold;
+	text-shadow: 1px 1px 1px orangered;
 }
 
 /* Bootstrap container, row, and columns */
@@ -30,16 +32,19 @@ body {
 	text-align: center;
 	margin: 0 auto;
 	height: 425px;
+	background-color: black;
 }
 .card:hover {
-	box-shadow: 1px 1px 5px #4f4f4f;
+	box-shadow: 2px 2px 20px #080808;
+	background-color: rgba(0, 0, 0, 0.39);
 }
+
 .card-title {
-	font-size: 16px;
+	font-size: 15px;
 	font-weight: bold;
 }
 .movie-info {
-	width: 75%;
+	width: 90%;
 	height: 100%;
 	text-align: left;
 }
@@ -49,16 +54,73 @@ body {
 /* Adv Search inputs/select */
 .adv-search-form {
 	padding: 15px;
+	color: #ebe4e4;
 }
-.adv-img {
-	height: 100%;
+/* .adv-img {
+	height: 98%;
+} */
+form {
+	/* background-color: rgba(0, 0, 0, 0.178); */
+	background-color: linear-gradient(
+		to right,
+		rgba(255, 255, 255, 0.55),
+		rgba(0, 0, 0, 0.75)
+	);
 }
+.form-control,
+.form-select {
+	background-color: rgba(255, 255, 255, 0.55);
+}
+/* Adv Form, Add to Favs, and Contact me submit button*/
+.btn-outline-secondary {
+	color: #d4cfcf;
+	border-color: orangered;
+	border-radius: 5px;
+}
+.btn-outline-secondary:hover {
+	background-color: orangered;
+	border-color: orangered;
+}
+.btn-outline-secondary:active {
+	border-color: orangered;
+}
+
+/* Navbar search button*/
+.btn-outline-dark {
+	color: #d4cfcf;
+	border-color: orangered;
+	border-radius: 10px;
+}
+.btn-outline-dark:hover {
+	border-color: orangered;
+}
+.btn-outline-dark:active {
+	border-color: black;
+	text-shadow: 1px 1px 1px orangered;
+}
+/* Remove from Favs button */
+.btn-outline-danger {
+	color: #d4cfcf;
+	border: none;
+	border-radius: 5px;
+}
+.btn-outline-danger:hover {
+	border-color: orangered;
+	background-color: orangered;
+	opacity: 1;
+}
+.btn-outline-danger:active {
+	border-color: black;
+	text-shadow: 1px 1px 1px orangered;
+}
+
 .form-control:focus,
 .form-select:focus {
-	border-color: #4f4f4f !important;
+	border-color: orangered !important;
 	-webkit-box-shadow: none !important;
 	-moz-box-shadow: none !important;
 	box-shadow: none !important;
+	background-color: rgb(241, 235, 235);
 }
 .adv-title-info {
 	margin: 0 auto;
@@ -69,17 +131,14 @@ body {
 .adv-title-info:hover {
 	box-shadow: none;
 }
-.adv-col-1 {
-	margin: 10px auto;
-}
+
 .adv-col-2 {
-	text-align: center;
-	padding: 1%;
+	margin: 0 auto;
+	height: 100%;
+	background-color: black;
+	padding: 0;
 }
-.adv-col-3 {
-	text-align: left;
-	padding: 1%;
-}
+
 li {
 	list-style: none;
 }
@@ -93,10 +152,15 @@ a:hover {
 /* Title details page */
 .genre-button {
 	border-radius: 50px;
+	border-color: orangered;
 	background-color: black;
 }
 .movies {
 	height: 100%;
+	margin-bottom: 25px;
+}
+.trailer-input {
+	opacity: 0;
 }
 .flashes {
 	margin-top: 50px;
@@ -110,14 +174,25 @@ a:hover {
 	padding: 10px;
 	text-align: left;
 }
-main {
-	margin-bottom: 500px;
+h1 {
+	color: #ebe4e4;
+	font-weight: bolder;
+}
+.contact-me {
+	width: 450px;
+	margin: 50px auto;
+	padding: 50px;
+	text-align: left;
+}
+.contact-btn {
+	width: 100%;
 }
 /* Footer */
 footer {
 	position: relative;
-	border-top: 1px solid #dbd8d8;
+	border-top: 1px solid #4f4f4f;
 	height: 40px;
+	width: 100%;
 }
 .footer-nav {
 	align-items: center;
@@ -139,4 +214,197 @@ footer {
 }
 .social-media {
 	margin-left: 10px;
+}
+label,
+.form-select {
+	color: #4f4f4f;
+}
+button {
+	color: green;
+}
+
+/* Small devices*/
+
+@media (max-width: 599px) {
+	.bg-img {
+		height: 95vh;
+		width: 100%;
+		background-image: linear-gradient(
+				to right,
+				rgba(255, 255, 255, 0.55),
+				rgba(0, 0, 0, 0.5)
+			),
+			url("./img/Wallpaper1.png");
+		background-size: cover;
+		background-repeat: repeat-y;
+	}
+	main {
+		margin-bottom: 150px;
+	}
+	.card-title {
+		font-size: 20px;
+	}
+	.genre-button {
+		font-size: 12px;
+	}
+	.card {
+		height: auto;
+		width: 220px;
+		margin: 0 auto;
+	}
+	.card-img-top {
+		height: 250px;
+	}
+
+	.adv-search-form {
+		width: 350px;
+		margin: 75px auto;
+	}
+
+	.adv-col-2 {
+		width: 300px;
+		height: 450px;
+		margin: 0 auto;
+	}
+	.adv-col-3 {
+		font-size: 15;
+	}
+}
+/* tablet - large phones */
+@media (min-width: 600px) {
+	.bg-img {
+		height: 120vh;
+		width: 100%;
+		background-image: linear-gradient(
+				to right,
+				rgba(255, 255, 255, 0.55),
+				rgba(0, 0, 0, 0.5)
+			),
+			url("./img/Wallpaper1.png");
+		background-size: cover;
+		background-repeat: repeat-y;
+	}
+	main {
+		margin-bottom: 100px;
+	}
+	.movie-info {
+		padding: 5px;
+		margin: 2px;
+	}
+	.card-title {
+		font-size: 22px;
+	}
+	.genre-button {
+		font-size: 13px;
+	}
+	.google-search {
+		margin: 0;
+	}
+	.card {
+		width: 250px;
+	}
+	.adv-search-form {
+		width: 350px;
+		margin: 100px auto;
+	}
+	.adv-col-2 {
+		width: 150px;
+	}
+	.adv-col-3 {
+		box-shadow: none;
+		width: 350px;
+		margin: 0 auto;
+	}
+}
+/* Medium screens */
+@media (min-width: 768px) {
+	.bg-img {
+		height: 130vh;
+		width: 100%;
+		background-image: linear-gradient(
+				to right,
+				rgba(255, 255, 255, 0.55),
+				rgba(0, 0, 0, 0.75)
+			),
+			url("./img/Wallpaper1.png");
+		background-size: cover;
+		background-repeat: repeat-y;
+	}
+	.card-title {
+		font-size: 25px;
+	}
+	.movies {
+		margin-bottom: 20px;
+	}
+	.card {
+		width: 225px;
+	}
+	.adv-search-form {
+		width: 350px;
+		margin: 100px auto;
+	}
+	.search-form-img {
+		height: 550px;
+	}
+	main {
+		margin-bottom: 500px;
+	}
+}
+/* Big screens*/
+@media (min-width: 992px) {
+	.bg-img {
+		height: 95vh;
+		width: 100%;
+		background-image: linear-gradient(
+				to right,
+				rgba(255, 255, 255, 0.5),
+				rgba(0, 0, 0, 0.9)
+			),
+			url("./img/Wallpaper1.png");
+		background-size: cover;
+		background-repeat: repeat-y;
+	}
+	.card-title {
+		font-size: 24px;
+	}
+	.movies {
+		margin-bottom: 20px;
+	}
+	.adv-search-form {
+		width: 350px;
+		margin: 100px auto;
+	}
+	.search-result {
+		width: 700px;
+		margin: 0 auto;
+	}
+	.search-form-img {
+		height: 550px;
+	}
+	main {
+		margin-bottom: 500px;
+	}
+}
+
+@media (min-width: 1200px) {
+	.bg-img {
+		height: 115vh;
+		width: 100%;
+		background-image: linear-gradient(
+				to right,
+				rgba(255, 255, 255, 0.5),
+				rgba(0, 0, 0, 0.9)
+			),
+			url("./img/Wallpaper1.png");
+		background-size: cover;
+		background-position: unset;
+		background-repeat: repeat-y;
+	}
+	.adv-search-form {
+		width: 350px;
+		margin: 100px auto;
+	}
+	main {
+		margin-bottom: 500px;
+	}
 }

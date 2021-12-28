@@ -9,23 +9,20 @@
   </head>
   <body>
     {% block content %}
-    <div class="row" style="width: 800px;margin: 0 auto;">
+    <div class="row search-result">
       <!-- movie poster-->
-      <div class="col-sm-4">
-        <img class="img-fluid" src="{{ movie.Poster | safe }}" alt="movie poster" style="height: 100%">
-        <a class="btn btn-secondary" href="{{ url_for('add_title', title=movie.Title )}}" style="width: 100%;">
-          Add to Favorites
-        </a>
+      <div class="col-sm-6 col-xm-12" style="margin: 0 auto;">
+        <img class="img-fluid rounded search-form-img" src="{{ movie.Poster | safe }}" alt="movie poster">
       </div>
 
       <!-- movie details-->
-      <div class="col-sm-8">
+      <div class="col-sm-6 col-xm-12">
         <div class="card-body movie-info">
           <h5 class="card-title">{{ movie.Title | title | safe }}</h5>
           <p class="card-text"><strong>{{ movie.Year | safe}} {{ movie.Rated | safe}}</strong></p>
           {% if movie.Genre %}
           {% for item in movie.Genre.split(",") %}
-          <p class="card-text btn btn-dark disabled genre-button">
+          <p class="card-text btn btn-dark disabled genre-button" style="border-color: orangered;">
             {{ item | title| safe }}</p>
           {% endfor %}
           {% endif %}
@@ -34,6 +31,21 @@
           <p class="card-text"><strong>Director</strong> {{ movie.Director }}</p>
           <p class="card-text"><strong>Stars</strong> {{ movie.Actors }}</p>
           <p class="card-text"><strong>IMDB</strong> {{ movie.imdbRating }}/10</p>
+          <form class="google-search" action="https://www.youtube.com/results" target="_blank"
+            style="background: none;">
+            <input class="trailer-input" value="{{ movie.Title }} {{ movie.Year }} trailer" type="search"
+              name="search_query">
+            <br>
+            <button class="btn btn-danger mb-3" type="submit" style="text-align: left;">
+              Trailer
+              <i class="fab fa-lg fa-youtube"></i>
+            </button>
+            <br>
+          </form>
+          <a class="btn btn-outline-secondary" href="{{ url_for('add_title', title=movie.Title )}}"
+            style="width: 100%;">
+            Add to Favorites
+          </a>
         </div>
       </div>
     </div>

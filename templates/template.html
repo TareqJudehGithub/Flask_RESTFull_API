@@ -28,7 +28,8 @@
 
   </head>
 
-  <body>
+  <body class="bg-img">
+    <!-- <img src="../static/img/Wallpaper1.png" class="img-fluid" alt=""> -->
     <header>
       <!--body tag template-->
       {% include 'navbar.html' %}
@@ -69,10 +70,11 @@
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
       crossorigin="anonymous"></script>
 
-    <footer>
+    <footer style="margin:0; width: 100%">
+
       <!--footer tag template-->
       {% block footer %}
-      <nav class="navbar navbar-expand-sm navbar-light m-0 shadow">
+      <nav class="navbar navbar-expand-sm navbar-light m-0">
         <div class="container-fluid">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03"
             aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
@@ -107,7 +109,7 @@
               </li>
 
               <li class="nav-item name-footer">
-                <a class="nav-link" href="#">Tareq Judeh 2021</a>
+                <a class="nav-link" href="{{ url_for('contact_me')}}">Contact me</a>
               </li>
             </ul>
 

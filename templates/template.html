@@ -23,13 +23,12 @@
     <!--Font Awesome link-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
       integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
-    <title>{% block title %}MoviesDB{% endblock %}</title>
+    <title>{% block title %}Movies Query{% endblock %}</title>
     {% endblock %}
 
   </head>
 
   <body class="bg-img">
-    <!-- <img src="../static/img/Wallpaper1.png" class="img-fluid" alt=""> -->
     <header>
       <!--body tag template-->
       {% include 'navbar.html' %}
@@ -42,7 +41,7 @@
       <!--Put each message in a Bootstrap alert message-->
       <li class="flash-msg">
         <div class="alert alert-secondary alert-dismissible fade show" role="alert">
-          <strong>{{ message }}</strong>
+          <strong>{{ message | safe }}</strong>
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
       </li>
@@ -91,19 +90,19 @@
               </li>
 
               <li class="nav-item social-media">
-                <a class="nav-link" href="https://www.facebook.com/tareq.m.joudeh/" target="_blank">
+                <a class="nav-link" href="#" target="_blank">
                   <i class="fab fa-lg fa-facebook"></i>
                 </a>
               </li>
 
               <li class="nav-item social-media">
-                <a class="nav-link" href="https://www.instagram.com/tareq_joudeh/" target="_blank">
+                <a class="nav-link" href="#" target="_blank">
                   <i class="fab fa-lg fa-instagram"></i>
                 </a>
               </li>
 
               <li class="nav-item social-media">
-                <a class="nav-link" href="https://github.com/TareqJudehGithub" target="_blank">
+                <a class="nav-link" href="#" target="_blank">
                   <i class="fab fa-lg fa-github"></i>
                 </a>
               </li>

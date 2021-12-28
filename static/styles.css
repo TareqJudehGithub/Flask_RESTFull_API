@@ -138,6 +138,13 @@ form {
 	background-color: black;
 	padding: 0;
 }
+.no-poster {
+	color: #4f4f4f;
+	font-size: 25px;
+	border-radius: 10px;
+	background-color: none;
+	padding-top: 210px;
+}
 
 li {
 	list-style: none;
@@ -268,6 +275,15 @@ button {
 	}
 	.adv-col-3 {
 		font-size: 15;
+	}
+	.no-poster {
+		color: #3a3939;
+		font-size: 22px;
+		border-radius: 10px;
+		background-color: none;
+		padding-top: 260px;
+		width: 350px;
+		margin: 0 auto;
 	}
 }
 /* tablet - large phones */

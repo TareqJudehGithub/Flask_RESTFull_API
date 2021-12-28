@@ -1,4 +1,4 @@
-<!--movie-info.html renders -->
+<!-- homepage -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,44 +11,57 @@
     {% block content %}
     <div class="row search-result">
       <!-- movie poster-->
-      <div class="col-sm-6 col-xm-12" style="margin: 0 auto;">
-        <img class="img-fluid rounded search-form-img" src="{{ movie.Poster | safe }}" alt="movie poster">
-      </div>
+      <div class="row search-result">
+        {% if movie.Poster == "N/A" %}
+        <div class="col-sm-6 col-xs-12" style="width: 19rem;height:460px;">
+          <p class="no-poster">This title has no poster</p>
 
-      <!-- movie details-->
-      <div class="col-sm-6 col-xm-12">
-        <div class="card-body movie-info">
-          <h5 class="card-title">{{ movie.Title | title | safe }}</h5>
-          <p class="card-text"><strong>{{ movie.Year | safe}} {{ movie.Rated | safe}}</strong></p>
-          {% if movie.Genre %}
-          {% for item in movie.Genre.split(",") %}
-          <p class="card-text btn btn-dark disabled genre-button" style="border-color: orangered;">
-            {{ item | title| safe }}</p>
-          {% endfor %}
-          {% endif %}
+        </div>
+        {% else %}
+        <div class="col-sm-6 col-xm-12" style="margin: 0 auto;">
+          <img class="img-fluid rounded search-form-img" src="{{ movie.Poster | safe }}" alt="movie poster">
+        </div>
+        {% endif %}
 
-          <p>{{ movie.Plot }}</p>
-          <p class="card-text"><strong>Director</strong> {{ movie.Director }}</p>
-          <p class="card-text"><strong>Stars</strong> {{ movie.Actors }}</p>
-          <p class="card-text"><strong>IMDB</strong> {{ movie.imdbRating }}/10</p>
-          <form class="google-search" action="https://www.youtube.com/results" target="_blank"
-            style="background: none;">
-            <input class="trailer-input" value="{{ movie.Title }} {{ movie.Year }} trailer" type="search"
-              name="search_query">
-            <br>
-            <button class="btn btn-danger mb-3" type="submit" style="text-align: left;">
-              Trailer
-              <i class="fab fa-lg fa-youtube"></i>
-            </button>
-            <br>
-          </form>
-          <a class="btn btn-outline-secondary" href="{{ url_for('add_title', title=movie.Title )}}"
-            style="width: 100%;">
-            Add to Favorites
-          </a>
+        <!-- movie details-->
+        <div class="col-sm-6 col-xm-12">
+          <div class="card-body movie-info">
+            <h5 class="card-title">{{ movie.Title | title | safe }}</h5>
+            <p class="card-text">
+              <strong>{{ movie.Year | safe }} | {{ movie.Rated | safe }}</strong>
+            </p>
+            {% if movie.Genre %}
+            {% for item in movie.Genre.split(",") %}
+            <p class="card-text btn btn-dark disabled genre-button" style="border-color: orangered;">
+              {{ item | title| safe }}</p>
+            {% endfor %}
+            {% endif %}
+            <p class="card-text" style="font-size: 14.5px">
+              <strong>IMDB {{ movie.imdbRating | safe }}/10</strong>
+            </p>
+
+            <p>{{ movie.Plot | safe }}</p>
+            <p class="card-text"><strong>Director</strong> {{ movie.Director | safe }}</p>
+            <p class="card-text"><strong>Stars</strong> {{ movie.Actors | safe}}</p>
+
+            <form class="google-search" action="https://www.youtube.com/results" target="_blank"
+              style="background: none;">
+              <input class="trailer-input" value="{{ movie.Title | safe }} {{ movie.Year | safe }} trailer"
+                type="search" name="search_query">
+              <br>
+              <button class="btn btn-danger mb-3" type="submit" style="text-align: left;">
+                Trailer
+                <i class="fab fa-lg fa-youtube"></i>
+              </button>
+              <br>
+            </form>
+            <a class="btn btn-outline-secondary" href="{{ url_for('add_title', title=movie.Title )}}"
+              style="width: 100%;">
+              Add to Favorites
+            </a>
+          </div>
         </div>
       </div>
-    </div>
-    {% endblock %}
+      {% endblock %}
   </body>
 </html>

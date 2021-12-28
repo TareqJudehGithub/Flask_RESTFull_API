@@ -10,7 +10,7 @@
     {% block content %}
     {% for row in favorites_list %}
     <div class="col-sm movies">
-      <div class="card " style="width: 19rem;height:470px;">
+      <div class="card " style="width: 19rem;height:480px;">
         <a href="{{ url_for('movie_info', title_ID=row.title) }}">
 
           <img src="{{ row.poster | safe }}" class="card-img-top img-fluid" alt="movie poster"

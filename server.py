@@ -51,7 +51,7 @@ movies_schema = MovieSchema(many=True)
 
 
 # API key response
-response = f"http://www.omdbapi.com/?apikey={API_KEY}&s=harry%20potter&type=movie"
+response = f"http://www.omdbapi.com/?apikey={API_KEY}&s=star%20wars"
 # Assigning API response to 'data' variable 
 data = requests.get(url=response)
 
@@ -75,7 +75,7 @@ def fav_movies():
   favorites_list = movies_schema.dump(favorites)
   
   if len(favorites_list) == 0: # Render empty message if Favorites is empty
-    flash("you have no items yet in Favorites.")
+    flash("you have no items yet in your Favorites list")
   
   return render_template(
     escape("favorites.html"),
@@ -97,11 +97,11 @@ def add_title(title):
   # Add title and poster to DB and save
   fav_item = Movies(title_name, poster)
   if Movies.query.filter_by(title=title_name).first():
-    flash(f"{title_name} is already in your favorites!")
+    flash(f"{title_name} is already in your Favorites!")
   else:
     db.session.add(fav_item)
     db.session.commit()
-    flash(f"{title_name} has been added to your favorites!")
+    flash(f"{title_name} has been added to your Favorites!")
   
   return render_template(
   escape("movie-info.html"),
@@ -109,7 +109,7 @@ def add_title(title):
   )
   
 
-@app.route("/add_fav_search/<title>")  # Add to favorites - search-form route
+@app.route("/add_fav_search/<title>")  # Add to Favorites - search-form route
 def add_title_search(title):
   # Instantiate a json object from the API response
   movie =  requests.get(
@@ -123,11 +123,11 @@ def add_title_search(title):
   # Add title and poster to DB and save
   fav_item = Movies(title_name, poster)
   if Movies.query.filter_by(title=title_name).first():
-    flash(f"{title_name} is already in your favorites!")
+    flash(f"{title_name} is already in your Favorites!")
   else:
     db.session.add(fav_item)
     db.session.commit()
-    flash(f"{title_name} has been added to your favorites!")
+    flash(f"{title_name} has been added to your Favorites!")
   
   return render_template(
   escape("search-form.html"),
@@ -140,7 +140,7 @@ def remove_title(title_id):
   title = Movies.query.get(title_id)
   db.session.delete(title)
   db.session.commit() 
-  flash(f"{title.title} has been removed from Favorites.")
+  flash(f"{title.title} has been removed from Favorites!")
   return redirect("/fav")
 
 
@@ -180,6 +180,7 @@ def search_movies():
     # Check if no data returned upon searching 
     if movie["Response"] == "False":
       flash("Title not found!")
+      
       return render_template(
         escape("search-form.html")
       ) 
@@ -206,7 +207,10 @@ def search_nav():
     # In case search returns no data
     if movies["Response"] == "False":
       flash("Your search did not return any result!")
-      return redirect("/")
+      return render_template(
+        escape("search-nav.html"),
+        movies=movies
+     )
     
     # Render search result   
     return render_template(
@@ -218,20 +222,19 @@ def search_nav():
 # Contact me - route
 @app.route("/contact_me", methods=["GET", "POST"])
 def contact_me():
-    # Post request
+    # Post request - Receive an email from Contact Me form
   if request.method == "POST":
       name = request.form.get("name")
       email = request.form.get("email")
       subject = request.form.get("subject")
       message = request.form.get("message")
     
-    #  Send contact an email:
       server = SMTP("smtp.gmail.com", 587)
       server.starttls()
       server.login(user=EMAIL_ADDRESS, password=EMAIL_PASS)
       server.sendmail(
-          from_addr=email,  # email address from form
-          to_addrs=EMAIL_ADDRESS, # your email address
+          from_addr=email,  # email address from form input
+          to_addrs=EMAIL_ADDRESS, # your email address - recipient
           msg=f"Subject: {subject}\n\n{message}"
               f"From: {name.title()}\n"
               f"Email: {email}\n"

@@ -1,4 +1,4 @@
-<!--search-form.html renders Advanced Search form-->
+<!-- Advanced Search form-->
 <!doctype html>
 <html lang="en">
   <head>
@@ -16,8 +16,12 @@
     {% if movie %}
 
     <!--Check if title has an image/poster -->
-    {% if movie.Poster %}
     <div class="row search-result">
+      {% if movie.Poster == "N/A" %}
+      <div class="col-sm-6 col-xs-12" style="width: 19rem;height:460px;">
+        <p class="no-poster">This title has no poster</p>
+      </div>
+      {% else %}
       <div class="col-sm-6 col-xs-12 adv-col-2" style="width: 19rem;height:460px;">
         <img src="{{ movie.Poster | safe }}" class="img-fluid rounded search-form-img" alt="movie poster">
       </div>
@@ -29,7 +33,7 @@
           <div class="card-body" style="text-align:left;">
             <h3 class="card-title">{{ movie.Title | title | safe }}</h3>
             <p class="card-text">
-              <strong>{{ movie.Year | safe }} | {{ movie.Rated | safe }} | IMDB {{ movie.imdbRating }}/10</strong>
+              <strong>{{ movie.Year | safe }} | {{ movie.Rated | safe }}</strong>
             </p>
 
             <!--Check if title has a Genre data -->
@@ -40,14 +44,17 @@
               }}</button>
             {% endfor %}
             {% endif %}
-            <p>{{ movie.Plot }}</p>
-            <p class="card-text"><strong>Director</strong> {{ movie.Director }}</p>
-            <p class="card-text"><strong>Stars</strong> {{ movie.Actors }}</p>
+            <p class="card-text" style="font-size: 14.5px">
+              <strong>IMDB {{ movie.imdbRating | safe }}/10</strong>
+            </p>
+            <p>{{ movie.Plot | safe }}</p>
+            <p class="card-text"><strong>Director</strong> {{ movie.Director | safe}}</p>
+            <p class="card-text"><strong>Stars</strong> {{ movie.Actors | safe }}</p>
 
 
             <form action="https://www.youtube.com/results" target="_blank" style="background: none;">
-              <input class="trailer-input" value="{{ movie.Title }} {{ movie.Year }} trailer" type="search"
-                name="search_query">
+              <input class="trailer-input" value="{{ movie.Title | safe }} {{ movie.Year | safe }} trailer"
+                type="search" name="search_query">
               <br>
               <button class="btn btn-danger mb-5" type="submit">
                 Trailer

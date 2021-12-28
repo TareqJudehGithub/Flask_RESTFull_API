@@ -40,6 +40,19 @@ Bootstrap v5, Google Fonts, and Font Awesome.
 
 Note: All dependencies and libraries used in the project are included in requirements.txt
 
+Project files:
+server.py
+  server.py is the app main file, where all the logic an functionality of the web app take place.
+  
+/templates/*.html 
+  The wep app view files and render files. 
+  
+/static/styles.css and Bootstrap v5
+  Both styles.css and Bootstrap v5 are responsible for app design and responsivness.
+ 
+ db.sqlite
+  SQL Alchemy database file, where all data is kept and stored at.
+ 
 
 After activating venv, kindly include these three variables below in your venv:
   

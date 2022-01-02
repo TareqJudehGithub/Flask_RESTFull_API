@@ -63,5 +63,6 @@ After activating venv, kindly include these three variables below in your venv:
 
 For further information and inquires please contact me.
   
+  
 Best regards,
 Tareq Judeh
